@@ -35,7 +35,7 @@ public class ImporteParameters {
   }
 
   @Parameters
-  public static Collection<Importe[]> data() {
+  public static Collection<Importe[]> getParameters() {
 
     return Arrays.asList(new Importe[][] {
         {
