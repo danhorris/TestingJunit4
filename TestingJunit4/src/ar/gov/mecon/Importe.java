@@ -14,6 +14,10 @@ public class Importe {
 
   private int decimales = 2;
 
+  /**
+   * @param monto
+   * @param moneda
+   */
   public Importe(BigDecimal monto, String moneda) {
     this.monto = monto;
     this.moneda = moneda;
@@ -24,7 +28,6 @@ public class Importe {
    * @return
    */
   public Importe mas(Importe importe) {
-
     if (importe.getMoneda().equals(moneda)) {
       Importe result = new Importe(monto.add(importe.getMonto()), moneda);
       return result;
@@ -73,6 +76,16 @@ public class Importe {
     return monto.toPlainString() + " " + moneda;
   }
 
+  /**
+   * @return
+   */
+  public Boolean importeValido() {
+    if (moneda.equals("")) {
+      return false;
+    }
+    return monto.compareTo(BigDecimal.ZERO) > 0;
+  }
+
   public String getMoneda() {
     return moneda;
   }
@@ -83,13 +96,6 @@ public class Importe {
 
   public BigDecimal getMonto() {
     return monto;
-  }
-
-  public Boolean importeValido() {
-    if (moneda.equals("")) {
-      return false;
-    }
-    return monto.compareTo(BigDecimal.ZERO) > 0;
   }
 
 }
