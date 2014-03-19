@@ -33,10 +33,9 @@ public class ListAssertRemove {
 
     @Override
     public boolean remove(Object o) {
-
+        // super.clear();
+        // return true;
       return super.remove(o);
-      // super.clear();
-      // return true;
     }
 
   }
