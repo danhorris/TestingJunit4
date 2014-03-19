@@ -9,7 +9,7 @@ import org.junit.Test;
 public class ListsException {
 
   /**
-   * El test solo va a pasar si se lanza una IndexOutOfBoundsException
+   * El test solo va a pasar si se lanza una IndexOutOfBoundsException.
    * 
    * @throws Exception
    */
