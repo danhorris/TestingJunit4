@@ -1,8 +1,10 @@
-package ar.gov.mecon;
+package ar.gov.mecon.mocks;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import ar.gov.mecon.Importe;
 
 public class ImporteMockTest {
 
