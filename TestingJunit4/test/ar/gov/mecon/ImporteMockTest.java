@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 public class ImporteMockTest {
 
   /**
-   * No testear Mockito. Tiene su propia bateria de testear, testear la funcionalidad de nuestra clase bajo
+   * No testear Mockito. Tiene su propia bateria de tests, testear la funcionalidad de nuestra clase bajo
    * test.
    * 
    * @throws Exception
