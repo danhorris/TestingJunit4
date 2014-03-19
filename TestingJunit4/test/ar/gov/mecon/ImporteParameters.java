@@ -12,6 +12,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 /**
+ * ImporteTest con parametros
+ * 
  * @author dhorri
  */
 @RunWith(Parameterized.class)
