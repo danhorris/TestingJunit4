@@ -13,7 +13,7 @@ public class ImporteMockTest {
    * @throws Exception
    */
   @Test
-  public void tieneCotizacionMock(){
+  public void tieneCotizacionMock() {
 
     Importe importeMock = Mockito.mock(Importe.class);
     Mockito.when(importeMock.getMoneda()).thenReturn("PESOS");
