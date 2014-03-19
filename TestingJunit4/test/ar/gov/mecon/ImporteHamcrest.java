@@ -10,6 +10,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ *
+ * @author dan
+ *
+ */
 public class ImporteHamcrest {
 
   private List<Importe> listaImportes;
