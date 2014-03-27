@@ -18,7 +18,7 @@ public class LoginServiceImplTest {
   private LoginServiceImpl service;
 
   @Before
-  public void inicializar() {
+  public void init() {
     usuario = Mockito.mock(IUsuario.class);
     repository = Mockito.mock(IRepository.class);
     service = new LoginServiceImpl(repository);
