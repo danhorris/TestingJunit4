@@ -6,4 +6,6 @@ public interface IUsuario {
 
   void setLogueado(boolean isLogueado);
 
+  void setRechazado(boolean isRechazado);
+
 }
