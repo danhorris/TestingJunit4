@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 public class LoginServiceImplTest {
 
   @Test
-  public void testName() throws Exception {
+  public void setearLogueadoEnTrueCuandoPasswordCoincide() throws Exception {
     // given
     IUsuario usuario = Mockito.mock(IUsuario.class);
     Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(true);
