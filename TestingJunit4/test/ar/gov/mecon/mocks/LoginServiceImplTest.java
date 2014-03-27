@@ -26,7 +26,6 @@ public class LoginServiceImplTest {
 
   @Test
   public void setearLogueadoEnTrueCuandoPasswordCoincide() {
-
     Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(true);
     Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
 
@@ -41,8 +40,7 @@ public class LoginServiceImplTest {
   }
 
   @Test
-  public void setRevocadoCuandoFallaLogin3veces() throws Exception {
-
+  public void setearRevocadoCuandoFallaLogin3veces() throws Exception {
     Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(false);
     Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
 
@@ -55,6 +53,25 @@ public class LoginServiceImplTest {
 
     // then
     Mockito.verify(usuario, Mockito.times(1)).setRechazado(true);
+
+  }
+
+  @Test
+  public void noSetearLogueadoTrueSiLoginFalla() throws Exception {
+    // given
+    Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(false);
+    Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
+
+    // when
+    LoginServiceImpl service = new LoginServiceImpl(repository);
+
+    for (int i = 0; i < 3; i++) {
+      service.login("dan", "password");
+    }
+
+    // then
+    Mockito.verify(usuario, Mockito.never()).setLogueado(true);
+    ;
 
   }
 }
