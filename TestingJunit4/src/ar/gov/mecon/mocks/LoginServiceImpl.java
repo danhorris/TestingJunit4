@@ -1,6 +1,6 @@
 package ar.gov.mecon.mocks;
 
-public class LoginServiceImpl {
+public class LoginServiceImpl implements LoginService {
 
   private IRepository repository;
 
