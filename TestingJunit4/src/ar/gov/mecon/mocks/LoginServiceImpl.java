@@ -10,8 +10,8 @@ public class LoginServiceImpl implements LoginService {
     this.repository = repository;
   }
 
-  public void login(String usuario, String password) {
-    IUsuario usuarioRecuperado = repository.find(usuario);
+  public void login(String usuarioString, String password) {
+    IUsuario usuarioRecuperado = repository.find(usuarioString);
 
     if (usuarioRecuperado.passwordMatches(password)) {
       usuarioRecuperado.setLogueado(true);
