@@ -1,0 +1,11 @@
+@${testType:newType(org.junit.Test)}
+
+public void ${testname}() throws Exception {
+  // given ${cursor}
+  ${staticImport:importStatic('org.junit.Assert.*', 'org.mockito.BDDMockito.*')}
+
+  // when
+
+  // then
+
+}

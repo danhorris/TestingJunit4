@@ -1,6 +1,7 @@
 package ar.gov.mecon;
 
 /**
+ * Prueba de update
  * @author dhorri
  */
 public class Cotizacion {

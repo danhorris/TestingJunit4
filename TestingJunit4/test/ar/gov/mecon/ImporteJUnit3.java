@@ -6,6 +6,10 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 /**
+ * JUnit 4 es compatible con codigo legacy de JUnit3
+ * <p>
+ * Puede seguir ejecutando tests que extiendan de TestCase
+ * 
  * @author dhorri
  */
 

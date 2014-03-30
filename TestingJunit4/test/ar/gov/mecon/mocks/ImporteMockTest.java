@@ -1,8 +1,11 @@
-package ar.gov.mecon;
+package ar.gov.mecon.mocks;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import ar.gov.mecon.Importe;
 
 public class ImporteMockTest {
 
@@ -18,7 +21,7 @@ public class ImporteMockTest {
     Importe importeMock = Mockito.mock(Importe.class);
     Mockito.when(importeMock.getMoneda()).thenReturn("PESOS");
 
-    Assert.assertTrue(importeMock.getMoneda() != null);
+    assertTrue(importeMock.getMoneda() != null);
 
   }
 
