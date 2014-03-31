@@ -73,12 +73,12 @@ public class LoginServiceImplTest {
   @Test
   public void noSetearRevocadoAUnUsuarioEnElPrimerIntento() throws Exception {
     // given
-    IUsuario otroUsuario = Mockito.mock(IUsuario.class);
+    IUsuario segundoUsuario = Mockito.mock(IUsuario.class);
     Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
-    Mockito.when(repository.find("Daniel")).thenReturn(otroUsuario);
+    Mockito.when(repository.find("Daniel")).thenReturn(segundoUsuario);
 
     pasaPassword(usuario, false);
-    pasaPassword(otroUsuario, true);
+    pasaPassword(segundoUsuario, true);
 
     // when
     service.login("dan", "password");
@@ -86,7 +86,7 @@ public class LoginServiceImplTest {
     service.login("Daniel", "password");
 
     // then
-    Mockito.verify(otroUsuario, Mockito.never()).setRechazado(true);
+    Mockito.verify(segundoUsuario, Mockito.never()).setRechazado(true);
 
   }
 
