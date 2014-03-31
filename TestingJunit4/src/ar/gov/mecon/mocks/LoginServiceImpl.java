@@ -1,5 +1,8 @@
 package ar.gov.mecon.mocks;
 
+import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
+import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
+
 /**
  * @author dhorri
  */

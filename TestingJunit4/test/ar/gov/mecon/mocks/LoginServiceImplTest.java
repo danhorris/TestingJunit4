@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
+import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
+
 /**
  * http://schuchert.wikispaces.com/Mockito.LoginServiceExample
  * 
