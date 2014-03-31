@@ -30,7 +30,7 @@ public class LoginServiceImplTest {
   }
 
   private void pasaPassword(IUsuario usuario, boolean pasa) {
-    Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(pasa);
+    Mockito.when(usuario.passwordCorrecta(Mockito.anyString())).thenReturn(pasa);
   }
 
   @Test
@@ -99,7 +99,7 @@ public class LoginServiceImplTest {
     // given
     pasaPassword(usuario, true);
     Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
-    Mockito.when(usuario.estaLogueado()).thenReturn(true);
+    Mockito.when(usuario.isLogueado()).thenReturn(true);
     // when
     service.login("dan", "password");
 
@@ -119,7 +119,7 @@ public class LoginServiceImplTest {
   public void NoLoguearAunUsuarioRechazado() {
     // given
     Mockito.when(repository.find("dan")).thenReturn(usuario);
-    Mockito.when(usuario.estaRechazado()).thenReturn(true);
+    Mockito.when(usuario.isRechazado()).thenReturn(true);
     // when
     service.login("dan", "password");
     // then

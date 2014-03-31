@@ -28,12 +28,12 @@ public class LoginServiceImpl implements LoginService {
       throw new UsuarioNoExisteException();
     }
 
-    if (usuarioRecuperado.estaRechazado()) {
+    if (usuarioRecuperado.isRechazado()) {
       throw new UsuarioRechazadoException();
     }
 
-    if (usuarioRecuperado.passwordMatches(password)) {
-      if (!usuarioRecuperado.estaLogueado() && !usuarioAnteriorLogin.equals(usuarioString)) {
+    if (usuarioRecuperado.passwordCorrecta(password)) {
+      if (!usuarioRecuperado.isLogueado() && !usuarioAnteriorLogin.equals(usuarioString)) {
         usuarioRecuperado.setLogueado(true);
         usuarioAnteriorLogin = usuarioString;
       } else {
