@@ -25,8 +25,12 @@ public class LoginServiceImplTest {
     service = new LoginServiceImpl(repository);
   }
 
+  private void pasaPassword(IUsuario usuario, boolean pasa) {
+    Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(pasa);
+  }
+
   @Test
-  public void setearLogueadoEnTrueCuandoPasswordCoincide() {
+  public void logueadoEnTrueCuandoPasswordCoincide() {
     pasaPassword(usuario, true);
     Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
     // when
@@ -36,12 +40,8 @@ public class LoginServiceImplTest {
 
   }
 
-  private void pasaPassword(IUsuario usuario, boolean pasa) {
-    Mockito.when(usuario.passwordMatches(Mockito.anyString())).thenReturn(pasa);
-  }
-
   @Test
-  public void setearRevocadoCuandoFallaLogin3veces() throws Exception {
+  public void revocadoCuandoFallaLogin3veces() throws Exception {
     pasaPassword(usuario, false);
 
     Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
