@@ -20,6 +20,10 @@ public class LoginServiceImpl implements LoginService {
   public void login(String usuarioString, String password) {
     IUsuario usuarioRecuperado = repository.find(usuarioString);
 
+    if (usuarioRecuperado == null) {
+      throw new UsuarioNoExisteException();
+    }
+
     if (usuarioRecuperado.passwordMatches(password)) {
       if (!usuarioRecuperado.estaLogueado() && !usuarioAnteriorLogin.equals(usuarioString)) {
         usuarioRecuperado.setLogueado(true);

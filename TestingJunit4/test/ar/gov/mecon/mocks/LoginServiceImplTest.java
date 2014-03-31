@@ -101,4 +101,13 @@ public class LoginServiceImplTest {
 
   }
 
+  @Test(expected = UsuarioNoExisteException.class)
+  public void usuarioNoExisteException() {
+    // given
+    Mockito.when(repository.find("dan")).thenReturn(null);
+    // when
+    service.login("dan", "password");
+    // then
+
+  }
 }
