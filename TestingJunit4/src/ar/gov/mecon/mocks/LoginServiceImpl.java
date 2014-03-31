@@ -1,10 +1,15 @@
 package ar.gov.mecon.mocks;
 
+/**
+ * @author dhorri
+ */
 public class LoginServiceImpl implements LoginService {
 
   private IRepository repository;
 
   private int intentosFallidos = 0;
+
+  private String usuarioAnteriorLoginFallido = "";
 
   public LoginServiceImpl(IRepository repository) {
     this.repository = repository;
@@ -17,12 +22,16 @@ public class LoginServiceImpl implements LoginService {
       usuarioRecuperado.setLogueado(true);
 
     } else {
-      ++intentosFallidos;
+      if (usuarioAnteriorLoginFallido.equals(usuarioString)) {
+        ++intentosFallidos;
+      } else {
+        usuarioAnteriorLoginFallido = usuarioString;
+        intentosFallidos = 1;
+      }
     }
 
     if (intentosFallidos == 3) {
       usuarioRecuperado.setRechazado(true);
     }
   }
-
 }
