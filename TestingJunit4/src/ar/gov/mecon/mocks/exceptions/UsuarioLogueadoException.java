@@ -1,5 +1,8 @@
 package ar.gov.mecon.mocks.exceptions;
 
+/**
+ * @author dhorri
+ */
 public class UsuarioLogueadoException extends RuntimeException {
 
   private static final long serialVersionUID = -1916671864051492218L;
