@@ -78,7 +78,7 @@ public class LoginServiceImplTest {
     Mockito.when(repository.find("Daniel")).thenReturn(segundoUsuario);
 
     pasaPassword(usuario, false);
-    pasaPassword(segundoUsuario, true);
+    pasaPassword(segundoUsuario, false);
 
     // when
     service.login("dan", "password");
