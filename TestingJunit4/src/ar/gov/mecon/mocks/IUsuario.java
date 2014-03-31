@@ -8,4 +8,6 @@ public interface IUsuario {
 
   void setRechazado(boolean isRechazado);
 
+  boolean estaLogueado();
+
 }

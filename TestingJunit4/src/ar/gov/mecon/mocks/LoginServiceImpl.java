@@ -11,6 +11,8 @@ public class LoginServiceImpl implements LoginService {
 
   private String usuarioAnteriorLoginFallido = "";
 
+  private String usuarioAnteriorLogin = "";
+
   public LoginServiceImpl(IRepository repository) {
     this.repository = repository;
   }
@@ -19,7 +21,12 @@ public class LoginServiceImpl implements LoginService {
     IUsuario usuarioRecuperado = repository.find(usuarioString);
 
     if (usuarioRecuperado.passwordMatches(password)) {
-      usuarioRecuperado.setLogueado(true);
+      if (!usuarioRecuperado.estaLogueado() && !usuarioAnteriorLogin.equals(usuarioString)) {
+        usuarioRecuperado.setLogueado(true);
+        usuarioAnteriorLogin = usuarioString;
+      } else {
+        throw new UsuarioLogueadoException();
+      }
 
     } else {
       if (usuarioAnteriorLoginFallido.equals(usuarioString)) {

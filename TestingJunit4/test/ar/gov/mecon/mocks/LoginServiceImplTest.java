@@ -90,4 +90,15 @@ public class LoginServiceImplTest {
 
   }
 
+  @Test(expected = UsuarioLogueadoException.class)
+  public void noPermitirSegundoLogin() {
+    // given
+    pasaPassword(usuario, true);
+    Mockito.when(repository.find(Mockito.anyString())).thenReturn(usuario);
+    Mockito.when(usuario.estaLogueado()).thenReturn(true);
+    // when
+    service.login("dan", "password");
+
+  }
+
 }
