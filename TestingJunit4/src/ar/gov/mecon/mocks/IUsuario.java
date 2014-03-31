@@ -10,4 +10,6 @@ public interface IUsuario {
 
   boolean estaLogueado();
 
+  boolean estaRechazado();
+
 }

@@ -2,6 +2,7 @@ package ar.gov.mecon.mocks;
 
 import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
 import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
+import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
 
 /**
  * @author dhorri
@@ -25,6 +26,10 @@ public class LoginServiceImpl implements LoginService {
 
     if (usuarioRecuperado == null) {
       throw new UsuarioNoExisteException();
+    }
+
+    if (usuarioRecuperado.estaRechazado()) {
+      throw new UsuarioRechazadoException();
     }
 
     if (usuarioRecuperado.passwordMatches(password)) {

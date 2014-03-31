@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
 import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
+import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
 
 /**
  * http://schuchert.wikispaces.com/Mockito.LoginServiceExample
@@ -108,6 +109,17 @@ public class LoginServiceImplTest {
   public void usuarioNoExisteException() {
     // given
     Mockito.when(repository.find("dan")).thenReturn(null);
+    // when
+    service.login("dan", "password");
+    // then
+
+  }
+
+  @Test(expected = UsuarioRechazadoException.class)
+  public void NoLoguearAunUsuarioRechazado() {
+    // given
+    Mockito.when(repository.find("dan")).thenReturn(usuario);
+    Mockito.when(usuario.estaRechazado()).thenReturn(true);
     // when
     service.login("dan", "password");
     // then
