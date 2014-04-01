@@ -6,6 +6,8 @@ public class Usuario implements IUsuario {
 
   private boolean rechazado;
 
+  private String login;
+
   @Override
   public boolean passwordCorrecta(String password) {
 
@@ -26,6 +28,10 @@ public class Usuario implements IUsuario {
 
   public void setRechazado(boolean rechazado) {
     this.rechazado = rechazado;
+  }
+
+  public String getLogin() {
+    return login;
   }
 
 }
