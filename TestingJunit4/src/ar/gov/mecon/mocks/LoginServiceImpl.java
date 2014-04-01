@@ -9,7 +9,9 @@ import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
  */
 public class LoginServiceImpl implements LoginService {
 
-  private IRepository repository;
+  private IRepository userRepository;
+
+  private IAuthRepository authRepository;
 
   private int intentosFallidos = 0;
 
@@ -17,12 +19,13 @@ public class LoginServiceImpl implements LoginService {
 
   private String usuarioAnteriorLogin = "";
 
-  public LoginServiceImpl(IRepository repository) {
-    this.repository = repository;
+  public LoginServiceImpl(IRepository repository, IAuthRepository repositoryLDAP) {
+    this.userRepository = repository;
+    this.authRepository = repositoryLDAP;
   }
 
   public void login(String usuarioString, String password) {
-    IUsuario usuarioRecuperado = repository.find(usuarioString);
+    IUsuario usuarioRecuperado = userRepository.find(usuarioString);
 
     if (usuarioRecuperado == null) {
       throw new UsuarioNoExisteException();
@@ -32,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
       throw new UsuarioRechazadoException();
     }
 
-    if (usuarioRecuperado.passwordCorrecta(password)) {
+    if (authRepository.verificarPassWord(usuarioString, password)) {
       if (!usuarioRecuperado.isLogueado() && !usuarioAnteriorLogin.equals(usuarioString)) {
         usuarioRecuperado.setLogueado(true);
         usuarioAnteriorLogin = usuarioString;
