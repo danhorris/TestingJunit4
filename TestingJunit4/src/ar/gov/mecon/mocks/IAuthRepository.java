@@ -1,6 +1,6 @@
 package ar.gov.mecon.mocks;
 
-public interface IRepositoryLDAP {
+public interface IAuthRepository {
 
   boolean verificarPassWord(String usuario, String password);
 
