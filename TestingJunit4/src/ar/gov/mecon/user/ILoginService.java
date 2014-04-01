@@ -1,6 +1,6 @@
 package ar.gov.mecon.user;
 
-public interface LoginService {
+public interface ILoginService {
 
   void login(String usuario, String password);
 

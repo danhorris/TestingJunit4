@@ -5,7 +5,7 @@ import ar.gov.mecon.user.exceptions.UsuarioNoExisteException;
 /**
  * @author dhorri
  */
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl implements ILoginService {
 
   private static final int maxIntentosFallidos = 3;
 
