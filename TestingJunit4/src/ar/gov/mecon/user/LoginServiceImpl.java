@@ -15,8 +15,6 @@ public class LoginServiceImpl implements LoginService {
 
   private String usuarioAnteriorLoginFallido = "";
 
-  private String usuarioAnteriorLogin = "";
-
   public LoginServiceImpl(IRepository repository, IAuthRepository repositoryLDAP) {
     this.userRepository = repository;
     this.authRepository = repositoryLDAP;
