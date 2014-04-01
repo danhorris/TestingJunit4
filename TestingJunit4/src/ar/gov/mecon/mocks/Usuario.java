@@ -1,5 +1,11 @@
 package ar.gov.mecon.mocks;
 
+import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
+import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
+
+/**
+ * @author dhorri
+ */
 public class Usuario implements IUsuario {
 
   private boolean logueado;
@@ -8,10 +14,20 @@ public class Usuario implements IUsuario {
 
   private String login;
 
-  @Override
-  public boolean passwordCorrecta(String password) {
+  private int intentosFallidos = 0;
 
-    return false;
+  @Override
+  public void login() {
+    if (!this.isLogueado()) {
+      this.setLogueado(true);
+    } else {
+      throw new UsuarioLogueadoException();
+    }
+
+    if (this.isRechazado()) {
+      throw new UsuarioRechazadoException();
+    }
+
   }
 
   public boolean isLogueado() {
@@ -32,6 +48,18 @@ public class Usuario implements IUsuario {
 
   public String getLogin() {
     return login;
+  }
+
+  public int getIntentosFallidos() {
+    return intentosFallidos;
+  }
+
+  public void setIntentosFallidos(int intentosFallidos) {
+    this.intentosFallidos = intentosFallidos;
+  }
+
+  public void setLogin(String login) {
+    this.login = login;
   }
 
 }

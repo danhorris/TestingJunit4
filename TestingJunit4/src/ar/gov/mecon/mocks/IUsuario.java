@@ -5,8 +5,6 @@ package ar.gov.mecon.mocks;
  */
 public interface IUsuario {
 
-  boolean passwordCorrecta(String password);
-
   void setLogueado(boolean isLogueado);
 
   void setRechazado(boolean isRechazado);
@@ -16,5 +14,11 @@ public interface IUsuario {
   boolean isRechazado();
 
   String getLogin();
+
+  void login();
+
+  int getIntentosFallidos();
+
+  void setIntentosFallidos(int intentosFallidos);
 
 }

@@ -1,13 +1,12 @@
 package ar.gov.mecon.mocks;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
-import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
 import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
-import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
 
 /**
  * http://schuchert.wikispaces.com/Mockito.LoginServiceExample
@@ -54,14 +53,13 @@ public class LoginServiceImplTest {
    * 
    */
   @Test
-  public void logueadoEnTrueCuandoPasswordCoincide() {
+  public void llamarALoginCuandoSeVerificoPass() {
     pasaPasswordPorLdap("dan", true);
     Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
     // when
     service.login("dan", "");
     // verifico que el metodo setLogueado(true) se haya llamado una vez
-    Mockito.verify(usuario, Mockito.times(1)).setLogueado(true);
-
+    Mockito.verify(usuario, Mockito.times(1)).login();
   }
 
   /**
@@ -71,7 +69,10 @@ public class LoginServiceImplTest {
   public void revocadoCuandoFallaLogin3veces() {
     pasaPasswordPorLdap("dan", false);
 
-    Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
+    Usuario usuarioDan = new Usuario();
+    usuarioDan.setLogin("dan");
+
+    Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuarioDan);
 
     // when
     for (int i = 0; i < 3; i++) {
@@ -79,7 +80,7 @@ public class LoginServiceImplTest {
     }
 
     // then
-    Mockito.verify(usuario, Mockito.times(1)).setRechazado(true);
+    Assert.assertTrue(usuarioDan.isRechazado());
 
   }
 
@@ -126,21 +127,6 @@ public class LoginServiceImplTest {
   /**
    * 
    */
-  @Test(expected = UsuarioLogueadoException.class)
-  public void noPermitirSegundoLogin() {
-    // given
-    pasaPasswordPorLdap("dan", true);
-
-    Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
-    Mockito.when(usuario.isLogueado()).thenReturn(true);
-    // when
-    service.login("dan", "password");
-
-  }
-
-  /**
-   * 
-   */
   @Test(expected = UsuarioNoExisteException.class)
   public void usuarioNoExisteException() {
     // given
@@ -148,20 +134,6 @@ public class LoginServiceImplTest {
     // when
     service.login("dan", "password");
     // then
-
   }
 
-  /**
-   * 
-   */
-  @Test(expected = UsuarioRechazadoException.class)
-  public void NoLoguearAunUsuarioRechazado() {
-    // given
-    Mockito.when(userRepository.find("dan")).thenReturn(usuario);
-    Mockito.when(usuario.isRechazado()).thenReturn(true);
-    // when
-    service.login("dan", "password");
-    // then
-
-  }
 }

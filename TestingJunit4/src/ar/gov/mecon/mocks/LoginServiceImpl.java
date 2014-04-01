@@ -1,19 +1,17 @@
 package ar.gov.mecon.mocks;
 
-import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
 import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
-import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
 
 /**
  * @author dhorri
  */
 public class LoginServiceImpl implements LoginService {
 
+  private static final int maxIntentosFallidos = 3;
+
   private IRepository userRepository;
 
   private IAuthRepository authRepository;
-
-  private int intentosFallidos = 0;
 
   private String usuarioAnteriorLoginFallido = "";
 
@@ -24,35 +22,25 @@ public class LoginServiceImpl implements LoginService {
     this.authRepository = repositoryLDAP;
   }
 
-  public void login(String usuarioString, String password) {
-    IUsuario usuarioRecuperado = userRepository.find(usuarioString);
+  public void login(String login, String password) {
+    IUsuario usuarioRecuperado = userRepository.find(login);
 
     if (usuarioRecuperado == null) {
       throw new UsuarioNoExisteException();
     }
 
-    if (usuarioRecuperado.isRechazado()) {
-      throw new UsuarioRechazadoException();
-    }
-
-    if (authRepository.verificarPassWord(usuarioString, password)) {
-      if (!usuarioRecuperado.isLogueado() && !usuarioAnteriorLogin.equals(usuarioString)) {
-        usuarioRecuperado.setLogueado(true);
-        usuarioAnteriorLogin = usuarioString;
-      } else {
-        throw new UsuarioLogueadoException();
-      }
-
+    if (authRepository.verificarPassWord(login, password)) {
+      usuarioRecuperado.login();
     } else {
-      if (usuarioAnteriorLoginFallido.equals(usuarioString)) {
-        ++intentosFallidos;
+      if (usuarioAnteriorLoginFallido.equals(login)) {
+        usuarioRecuperado.setIntentosFallidos(usuarioRecuperado.getIntentosFallidos() + 1);
       } else {
-        usuarioAnteriorLoginFallido = usuarioString;
-        intentosFallidos = 1;
+        usuarioAnteriorLoginFallido = login;
+        usuarioRecuperado.setIntentosFallidos(1);
       }
     }
 
-    if (intentosFallidos == 3) {
+    if (usuarioRecuperado.getIntentosFallidos() == maxIntentosFallidos) {
       usuarioRecuperado.setRechazado(true);
     }
   }
