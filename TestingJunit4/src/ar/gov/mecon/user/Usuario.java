@@ -1,7 +1,7 @@
 package ar.gov.mecon.user;
 
-import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
-import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
+import ar.gov.mecon.user.exceptions.UsuarioLogueadoException;
+import ar.gov.mecon.user.exceptions.UsuarioRechazadoException;
 
 /**
  * @author dhorri

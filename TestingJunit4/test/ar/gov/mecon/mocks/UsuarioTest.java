@@ -2,9 +2,9 @@ package ar.gov.mecon.mocks;
 
 import org.junit.Test;
 
-import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
-import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
 import ar.gov.mecon.user.Usuario;
+import ar.gov.mecon.user.exceptions.UsuarioLogueadoException;
+import ar.gov.mecon.user.exceptions.UsuarioRechazadoException;
 
 public class UsuarioTest {
 

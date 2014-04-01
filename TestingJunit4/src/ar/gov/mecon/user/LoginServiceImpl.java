@@ -1,6 +1,6 @@
 package ar.gov.mecon.user;
 
-import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
+import ar.gov.mecon.user.exceptions.UsuarioNoExisteException;
 
 /**
  * @author dhorri

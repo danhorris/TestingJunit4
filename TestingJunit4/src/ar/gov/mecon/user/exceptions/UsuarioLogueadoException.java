@@ -1,4 +1,4 @@
-package ar.gov.mecon.mocks.exceptions;
+package ar.gov.mecon.user.exceptions;
 
 /**
  * @author dhorri
