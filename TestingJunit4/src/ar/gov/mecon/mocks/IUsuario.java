@@ -15,4 +15,6 @@ public interface IUsuario {
 
   boolean isRechazado();
 
+  String getLogin();
+
 }
