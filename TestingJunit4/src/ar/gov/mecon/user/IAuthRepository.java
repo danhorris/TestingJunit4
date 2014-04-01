@@ -1,4 +1,4 @@
-package ar.gov.mecon.mocks;
+package ar.gov.mecon.user;
 
 public interface IAuthRepository {
 

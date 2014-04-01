@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import ar.gov.mecon.mocks.exceptions.UsuarioLogueadoException;
 import ar.gov.mecon.mocks.exceptions.UsuarioRechazadoException;
+import ar.gov.mecon.user.Usuario;
 
 public class UsuarioTest {
 

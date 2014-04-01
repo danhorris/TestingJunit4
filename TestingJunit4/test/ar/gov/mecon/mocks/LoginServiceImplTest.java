@@ -7,6 +7,11 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 import ar.gov.mecon.mocks.exceptions.UsuarioNoExisteException;
+import ar.gov.mecon.user.IAuthRepository;
+import ar.gov.mecon.user.IRepository;
+import ar.gov.mecon.user.IUsuario;
+import ar.gov.mecon.user.LoginServiceImpl;
+import ar.gov.mecon.user.Usuario;
 
 /**
  * http://schuchert.wikispaces.com/Mockito.LoginServiceExample
