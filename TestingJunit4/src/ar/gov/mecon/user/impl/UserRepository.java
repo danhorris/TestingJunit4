@@ -1,4 +1,7 @@
-package ar.gov.mecon.user;
+package ar.gov.mecon.user.impl;
+
+import ar.gov.mecon.user.IRepository;
+import ar.gov.mecon.user.IUsuario;
 
 
 /**

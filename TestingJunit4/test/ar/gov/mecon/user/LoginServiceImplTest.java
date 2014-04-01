@@ -9,9 +9,9 @@ import org.mockito.Mockito;
 import ar.gov.mecon.user.IAuthRepository;
 import ar.gov.mecon.user.IRepository;
 import ar.gov.mecon.user.IUsuario;
-import ar.gov.mecon.user.LoginServiceImpl;
-import ar.gov.mecon.user.Usuario;
 import ar.gov.mecon.user.exceptions.UsuarioNoExisteException;
+import ar.gov.mecon.user.impl.LoginServiceImpl;
+import ar.gov.mecon.user.impl.Usuario;
 
 /**
  * http://schuchert.wikispaces.com/Mockito.LoginServiceExample

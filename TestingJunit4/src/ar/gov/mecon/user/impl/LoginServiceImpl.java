@@ -1,5 +1,9 @@
-package ar.gov.mecon.user;
+package ar.gov.mecon.user.impl;
 
+import ar.gov.mecon.user.IAuthRepository;
+import ar.gov.mecon.user.ILoginService;
+import ar.gov.mecon.user.IRepository;
+import ar.gov.mecon.user.IUsuario;
 import ar.gov.mecon.user.exceptions.UsuarioNoExisteException;
 
 /**
