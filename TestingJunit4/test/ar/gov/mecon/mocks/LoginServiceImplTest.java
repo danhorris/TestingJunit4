@@ -20,7 +20,7 @@ public class LoginServiceImplTest {
 
   private IRepository userRepository;
 
-  private IAuthRepository repositoryLDAP;
+  private IAuthRepository authRepository;
 
   private LoginServiceImpl service;
 
@@ -33,10 +33,10 @@ public class LoginServiceImplTest {
     Mockito.when(usuario.getLogin()).thenReturn("dan");
 
     userRepository = Mockito.mock(IRepository.class);
-    repositoryLDAP = Mockito.mock(IAuthRepository.class);
+    authRepository = Mockito.mock(IAuthRepository.class);
 
     // inyeccion de dependencias
-    service = new LoginServiceImpl(userRepository, repositoryLDAP);
+    service = new LoginServiceImpl(userRepository, authRepository);
   }
 
   /**
@@ -46,7 +46,7 @@ public class LoginServiceImplTest {
    * @param loginCorrecto
    */
   private void pasaPasswordPorLdap(String loginUsuario, boolean loginCorrecto) {
-    Mockito.when(repositoryLDAP.verificarPassWord(Mockito.eq(loginUsuario), Mockito.anyString())).thenReturn(
+    Mockito.when(authRepository.verificarPassWord(Mockito.eq(loginUsuario), Mockito.anyString())).thenReturn(
         loginCorrecto);
   }
 
