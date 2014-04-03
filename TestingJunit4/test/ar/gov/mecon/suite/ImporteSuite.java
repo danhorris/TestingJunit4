@@ -6,6 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import ar.gov.mecon.ImporteParameters;
 import ar.gov.mecon.ImporteTest;
+import ar.gov.mecon.ImporteTestRule;
 import ar.gov.mecon.ListAssertRemove;
 import ar.gov.mecon.ListsException;
 import ar.gov.mecon.mocks.ListMockitoTest;
@@ -18,7 +19,7 @@ import ar.gov.mecon.mocks.ListMockitoTest;
 @RunWith(Suite.class)
 @SuiteClasses({
     ImporteTest.class, ImporteParameters.class, ListsException.class, ListAssertRemove.class,
-    ListMockitoTest.class
+    ListMockitoTest.class, ImporteTestRule.class
 })
 public class ImporteSuite {
 
