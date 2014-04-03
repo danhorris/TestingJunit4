@@ -9,7 +9,9 @@ import org.junit.rules.ExpectedException;
 import ar.gov.mecon.constants.Moneda;
 
 /**
- * Clase que usa {@link Rule} para verificar Exception.
+ * Clase que usa {@link Rule} para verificar Exception. Se puede verificar mensajes.
+ * <p>
+ * Con {@link Test} expected podes chequar el tipo de la exception.
  * 
  * @author dhorri
  */
