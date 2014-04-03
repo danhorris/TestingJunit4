@@ -55,7 +55,7 @@ public class LoginServiceImplTest {
    * 
    */
   @Test
-  public void debeLlamarALoginCuandoSeVerificoPass() {
+  public void debeLlamarALoginUsuarioCuandoSeVerificoPass() {
     pasaPasswordPorLdap("dan", true);
     Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
     // when
