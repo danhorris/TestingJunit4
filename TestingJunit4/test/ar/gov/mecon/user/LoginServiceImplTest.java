@@ -58,7 +58,7 @@ public class LoginServiceImplTest {
    * 
    */
   @Test
-  public void llamarALoginCuandoSeVerificoPass() {
+  public void debeLlamarALoginCuandoSeVerificoPass() {
     pasaPasswordPorLdap("dan", true);
     Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
     // when
@@ -71,7 +71,7 @@ public class LoginServiceImplTest {
    * 
    */
   @Test
-  public void revocadoCuandoFallaLogin3veces() {
+  public void debeRevocaarCuandoFallaLogin3veces() {
     pasaPasswordPorLdap("dan", false);
 
     Usuario usuarioDan = new Usuario();
