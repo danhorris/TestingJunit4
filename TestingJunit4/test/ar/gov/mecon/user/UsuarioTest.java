@@ -9,7 +9,7 @@ import ar.gov.mecon.user.impl.Usuario;
 public class UsuarioTest {
 
   @Test(expected = UsuarioLogueadoException.class)
-  public void noPermitirSegundoLogin() {
+  public void noDebePermitirSegundoLogin() {
     // given
     Usuario usuario = new Usuario();
     usuario.setLogueado(true);
@@ -20,7 +20,7 @@ public class UsuarioTest {
   }
 
   @Test(expected = UsuarioRechazadoException.class)
-  public void noLoguearAunUsuarioRechazado() {
+  public void noDebeLoguearAunUsuarioRechazado() {
     // given
     Usuario usuario = new Usuario();
     usuario.setRechazado(true);
