@@ -10,10 +10,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.gov.mecon.constants.Moneda;
+
 /**
- *
  * @author dan
- *
  */
 public class ImporteHamcrest {
 
@@ -21,8 +21,8 @@ public class ImporteHamcrest {
 
   @Before
   public void inicializarListaimportes() {
-    Importe dosPesosCon10 = new Importe(new BigDecimal("2.10"), "PESOS");
-    Importe cuatroPesosCon75 = new Importe(new BigDecimal("4.33"), "PESOS");
+    Importe dosPesosCon10 = new Importe(new BigDecimal("2.10"), Moneda.PESOS);
+    Importe cuatroPesosCon75 = new Importe(new BigDecimal("4.33"), Moneda.PESOS);
 
     listaImportes = new ArrayList<Importe>();
     listaImportes.add(dosPesosCon10);
@@ -32,13 +32,13 @@ public class ImporteHamcrest {
 
   @Test
   public void testContains() {
-    Importe importeNuevo = new Importe(new BigDecimal("2.10"), "PESOS");
+    Importe importeNuevo = new Importe(new BigDecimal("2.10"), Moneda.PESOS);
     Assert.assertTrue(listaImportes.contains(importeNuevo));
   }
 
   @Test
   public void testContainsHamcrest() {
-    Importe importeNuevo = new Importe(new BigDecimal("2.10"), "PESOS");
+    Importe importeNuevo = new Importe(new BigDecimal("2.10"), Moneda.PESOS);
     MatcherAssert.assertThat(listaImportes, CoreMatchers.hasItem(importeNuevo));
   }
 }

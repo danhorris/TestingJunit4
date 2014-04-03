@@ -6,13 +6,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import ar.gov.mecon.constants.Moneda;
+
+/**
+ * Clase que usa {@link Rule} para verificar Exception.
+ * 
+ * @author dhorri
+ */
 public class ImporteTestRule {
-
-  private String pesos = "PESOS";
-
-  private String pesosChilenos = "PESOS_CHILENOS";
-
-  private String pesoUruguayo = "PESO_URUGUAYO";
 
   @Rule
   public ExpectedException exception = ExpectedException.none();
@@ -20,10 +21,10 @@ public class ImporteTestRule {
   @Test
   public void debeLanzarExceptionPorCotizacionErroneaParaImporteAConvertir() {
     // given
-    Importe unPesoUruguayo = new Importe(BigDecimal.ONE, pesoUruguayo);
-    Importe cuatroPesosChilenos = new Importe(new BigDecimal("4"), pesosChilenos);
+    Importe unPesoUruguayo = new Importe(BigDecimal.ONE, Moneda.PESOS);
+    Importe cuatroPesosChilenos = new Importe(new BigDecimal("4"), Moneda.PESOS_CHILENOS);
     Cotizacion cotizacionPesosChilenosAPesosUruguayos = new Cotizacion(cuatroPesosChilenos, unPesoUruguayo);
-    Importe diezPesos = new Importe(BigDecimal.TEN, pesos);
+    Importe diezPesos = new Importe(BigDecimal.TEN, Moneda.PESOS);
 
     exception.expect(MonedaException.class);
     exception.expectMessage("Monedas no coinciden");

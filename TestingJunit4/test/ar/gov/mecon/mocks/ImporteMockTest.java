@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import ar.gov.mecon.Importe;
+import ar.gov.mecon.constants.Moneda;
 
 public class ImporteMockTest {
 
@@ -19,7 +20,7 @@ public class ImporteMockTest {
   public void tieneCotizacionMock() {
 
     Importe importeMock = Mockito.mock(Importe.class);
-    Mockito.when(importeMock.getMoneda()).thenReturn("PESOS");
+    Mockito.when(importeMock.getMoneda()).thenReturn(Moneda.PESOS);
 
     assertTrue(importeMock.getMoneda() != null);
 

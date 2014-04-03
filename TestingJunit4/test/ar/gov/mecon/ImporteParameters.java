@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import ar.gov.mecon.constants.Moneda;
+
 /**
  * ImporteTest con parametros
  * 
@@ -18,8 +20,6 @@ import org.junit.runners.Parameterized.Parameters;
  */
 @RunWith(Parameterized.class)
 public class ImporteParameters {
-
-  private static final String pesos = "PESOS";
 
   private Importe valorImporte1;
 
@@ -39,16 +39,16 @@ public class ImporteParameters {
 
     return Arrays.asList(new Importe[][] {
         {
-            new Importe(new BigDecimal("2"), pesos), new Importe(new BigDecimal("2"), pesos),
-            new Importe(new BigDecimal("4"), "PESOS")
+            new Importe(new BigDecimal("2"), Moneda.PESOS), new Importe(new BigDecimal("2"), Moneda.PESOS),
+            new Importe(new BigDecimal("4"), Moneda.PESOS)
         },
         {
-            new Importe(new BigDecimal("2"), pesos), new Importe(new BigDecimal("6"), pesos),
-            new Importe(new BigDecimal("8"), pesos)
+            new Importe(new BigDecimal("2"), Moneda.PESOS), new Importe(new BigDecimal("6"), Moneda.PESOS),
+            new Importe(new BigDecimal("8"), Moneda.PESOS)
         },
         {
-            new Importe(new BigDecimal("2"), pesos), new Importe(new BigDecimal("1"), pesos),
-            new Importe(new BigDecimal("3"), pesos)
+            new Importe(new BigDecimal("2"), Moneda.PESOS), new Importe(new BigDecimal("1"), Moneda.PESOS),
+            new Importe(new BigDecimal("3"), Moneda.PESOS)
         }
     });
   }
@@ -63,7 +63,7 @@ public class ImporteParameters {
   @Test
   @Ignore("Ignorado porque no se pasan parametros")
   public void metodoIgnoradoTest() {
-    Assert.assertEquals(new Importe(BigDecimal.ONE, "PESOS"), new Importe(BigDecimal.ONE, "PESOS"));
+    Assert.assertEquals(new Importe(BigDecimal.ONE, Moneda.PESOS), new Importe(BigDecimal.ONE, Moneda.PESOS));
   }
 
 }

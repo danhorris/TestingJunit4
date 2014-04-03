@@ -5,21 +5,15 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import ar.gov.mecon.constants.Moneda;
+
 public class ImporteTest {
-
-  private String pesos = "PESOS";
-
-  private String pesosChilenos = "PESOS_CHILENOS";
-
-  private String pesoUruguayo = "PESO_URUGUAYO";
-
-  private String dolar = "DOLAR";
 
   @Test
   public void sumaImportemMismaMoneda() {
     // given
-    Importe dosPesos = new Importe(new BigDecimal("2"), pesos);
-    Importe cuatroPesos = new Importe(new BigDecimal("4"), pesos);
+    Importe dosPesos = new Importe(new BigDecimal("2"), Moneda.PESOS);
+    Importe cuatroPesos = new Importe(new BigDecimal("4"), Moneda.PESOS);
 
     // when and then
     Assert.assertEquals(dosPesos.mas(dosPesos).getMonto(), cuatroPesos.getMonto());
@@ -28,9 +22,9 @@ public class ImporteTest {
   @Test
   public void sumaImporteMonedaDistinta() {
     // given
-    Importe dosPesos = new Importe(new BigDecimal("2"), pesos);
-    Importe dosPesosChilenos = new Importe(new BigDecimal("2"), pesosChilenos);
-    Importe cuatroPesos = new Importe(new BigDecimal("4"), pesos);
+    Importe dosPesos = new Importe(new BigDecimal("2"), Moneda.PESOS);
+    Importe dosPesosChilenos = new Importe(new BigDecimal("2"), Moneda.PESOS_CHILENOS);
+    Importe cuatroPesos = new Importe(new BigDecimal("4"), Moneda.PESOS);
 
     // when and then
     Assert.assertFalse(dosPesos.mas(dosPesosChilenos).equals(cuatroPesos));
@@ -39,57 +33,57 @@ public class ImporteTest {
   @Test
   public void equalsConMoneda() {
 
-    Importe cincoPesos = new Importe(new BigDecimal("5"), pesos);
-    Importe otroCincoPesos = new Importe(new BigDecimal("5"), pesos);
+    Importe cincoPesos = new Importe(new BigDecimal("5"), Moneda.PESOS);
+    Importe otroCincoPesos = new Importe(new BigDecimal("5"), Moneda.PESOS);
 
     Assert.assertEquals(cincoPesos, otroCincoPesos);
 
-    Assert.assertFalse(cincoPesos.equals(new Importe(new BigDecimal("5"), pesosChilenos)));
+    Assert.assertFalse(cincoPesos.equals(new Importe(new BigDecimal("5"), Moneda.PESOS_CHILENOS)));
   }
 
   @Test
   public void restarImporte() {
 
     // given
-    Importe diesPesos = new Importe(BigDecimal.TEN, pesos);
-    Importe cincoPesos = new Importe(new BigDecimal("5"), pesos);
+    Importe diesPesos = new Importe(BigDecimal.TEN, Moneda.PESOS);
+    Importe cincoPesos = new Importe(new BigDecimal("5"), Moneda.PESOS);
 
     // when
     Importe resta = diesPesos.menos(cincoPesos);
 
     // then
-    Assert.assertEquals(resta, new Importe(new BigDecimal("5"), pesos));
+    Assert.assertEquals(resta, new Importe(new BigDecimal("5"), Moneda.PESOS));
   }
 
   @Test
   public void conversionSimple() {
     // given
-    Importe dosPesos = new Importe(new BigDecimal("2"), pesos);
-    Importe cuatroPesosChilenos = new Importe(new BigDecimal("4"), pesosChilenos);
+    Importe dosPesos = new Importe(new BigDecimal("2"), Moneda.PESOS);
+    Importe cuatroPesosChilenos = new Importe(new BigDecimal("4"), Moneda.PESOS_CHILENOS);
     Cotizacion cotizacionPesosAPesosChilenos = new Cotizacion(dosPesos, cuatroPesosChilenos);
 
-    Importe diezPesos = new Importe(BigDecimal.TEN, pesos);
-    Importe oncePesos = new Importe(new BigDecimal("11"), pesos);
+    Importe diezPesos = new Importe(BigDecimal.TEN, Moneda.PESOS);
+    Importe oncePesos = new Importe(new BigDecimal("11"), Moneda.PESOS);
 
     // when
     Importe importeEnPesosChilenos = diezPesos.convertirA(cotizacionPesosAPesosChilenos);
     Importe importeEnPesosChilenos2 = oncePesos.convertirA(cotizacionPesosAPesosChilenos);
 
     // then
-    Assert.assertEquals(new Importe(new BigDecimal("20.00"), pesosChilenos), importeEnPesosChilenos);
-    Assert.assertEquals(new Importe(new BigDecimal("22.00"), pesosChilenos), importeEnPesosChilenos2);
+    Assert.assertEquals(new Importe(new BigDecimal("20.00"), Moneda.PESOS_CHILENOS), importeEnPesosChilenos);
+    Assert.assertEquals(new Importe(new BigDecimal("22.00"), Moneda.PESOS_CHILENOS), importeEnPesosChilenos2);
 
-    Assert.assertFalse(pesos.equals(importeEnPesosChilenos.getMoneda()));
+    Assert.assertFalse(Moneda.PESOS.equals(importeEnPesosChilenos.getMoneda()));
 
   }
 
   @Test(expected = MonedaException.class)
   public void cotizacionDistintaMonedaException() {
     // given
-    Importe unPesoUruguayo = new Importe(BigDecimal.ONE, pesoUruguayo);
-    Importe cuatroPesosChilenos = new Importe(new BigDecimal("4"), pesosChilenos);
+    Importe unPesoUruguayo = new Importe(BigDecimal.ONE, Moneda.PESOS_URUGUAYOS);
+    Importe cuatroPesosChilenos = new Importe(new BigDecimal("4"), Moneda.PESOS_CHILENOS);
     Cotizacion cotizacionPesosChilenosAPesosUruguayos = new Cotizacion(cuatroPesosChilenos, unPesoUruguayo);
-    Importe diezPesos = new Importe(BigDecimal.TEN, pesos);
+    Importe diezPesos = new Importe(BigDecimal.TEN, Moneda.PESOS);
 
     // when
     diezPesos.convertirA(cotizacionPesosChilenosAPesosUruguayos);
@@ -99,16 +93,16 @@ public class ImporteTest {
   @Test
   public void conversionCompleja() {
     // given
-    Importe dosPesosCon10 = new Importe(new BigDecimal("2.10"), pesos);
-    Importe cuatroPesosCon75 = new Importe(new BigDecimal("4.33"), pesosChilenos);
+    Importe dosPesosCon10 = new Importe(new BigDecimal("2.10"), Moneda.PESOS);
+    Importe cuatroPesosCon75 = new Importe(new BigDecimal("4.33"), Moneda.PESOS_CHILENOS);
     Cotizacion cotizacionPesosAPesosChilenos = new Cotizacion(dosPesosCon10, cuatroPesosCon75);
 
-    Importe sieteCon85 = new Importe(new BigDecimal("7.85"), pesos);
-    Importe unDolar = new Importe(new BigDecimal("1.00"), dolar);
+    Importe sieteCon85 = new Importe(new BigDecimal("7.85"), Moneda.PESOS);
+    Importe unDolar = new Importe(new BigDecimal("1.00"), Moneda.DOLARES);
     Cotizacion cotizacionPesosADolar = new Cotizacion(sieteCon85, unDolar);
 
-    Importe diezPesos = new Importe(BigDecimal.TEN, pesos);
-    Importe oncePesos = new Importe(new BigDecimal("11"), pesos);
+    Importe diezPesos = new Importe(BigDecimal.TEN, Moneda.PESOS);
+    Importe oncePesos = new Importe(new BigDecimal("11"), Moneda.PESOS);
 
     // when
     Importe importeEnPesosChilenos = diezPesos.convertirA(cotizacionPesosAPesosChilenos);
@@ -116,9 +110,9 @@ public class ImporteTest {
     Importe importeEnDolares = diezPesos.convertirA(cotizacionPesosADolar);
 
     // then
-    Assert.assertEquals(new Importe(new BigDecimal("20.62"), pesosChilenos), importeEnPesosChilenos);
-    Assert.assertEquals(new Importe(new BigDecimal("22.68"), pesosChilenos), importeEnPesosChilenos2);
-    Assert.assertEquals(new Importe(new BigDecimal("1.27"), dolar), importeEnDolares);
+    Assert.assertEquals(new Importe(new BigDecimal("20.62"), Moneda.PESOS_CHILENOS), importeEnPesosChilenos);
+    Assert.assertEquals(new Importe(new BigDecimal("22.68"), Moneda.PESOS_CHILENOS), importeEnPesosChilenos2);
+    Assert.assertEquals(new Importe(new BigDecimal("1.27"), Moneda.DOLARES), importeEnDolares);
 
   }
 
@@ -136,7 +130,7 @@ public class ImporteTest {
   @Test
   public void importeInvalidoPorMonto() {
     // given
-    Importe dosPesosCon10 = new Importe(new BigDecimal("0"), pesos);
+    Importe dosPesosCon10 = new Importe(new BigDecimal("0"), Moneda.PESOS);
     // when and then
     Assert.assertFalse(dosPesosCon10.importeValido());
   }
