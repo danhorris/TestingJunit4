@@ -6,9 +6,6 @@ import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
-import ar.gov.mecon.user.IAuthRepository;
-import ar.gov.mecon.user.IRepository;
-import ar.gov.mecon.user.IUsuario;
 import ar.gov.mecon.user.exceptions.UsuarioNoExisteException;
 import ar.gov.mecon.user.impl.LoginServiceImpl;
 import ar.gov.mecon.user.impl.Usuario;
@@ -93,7 +90,7 @@ public class LoginServiceImplTest {
    * 
    */
   @Test
-  public void noSetearLogueadoTrueSiLoginFalla() {
+  public void noDebeSetearLogueadoTrueSiLoginFalla() {
     // given
     pasaPasswordPorLdap("dan", false);
     Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
@@ -110,7 +107,7 @@ public class LoginServiceImplTest {
    * 
    */
   @Test
-  public void noSetearRevocadoAUnUsuarioEnElPrimerIntento() {
+  public void noDebeSetearRevocadoAUnUsuarioEnElPrimerIntento() {
     // given
     IUsuario segundoUsuario = Mockito.mock(IUsuario.class);
     Mockito.when(userRepository.find(Mockito.anyString())).thenReturn(usuario);
@@ -133,7 +130,7 @@ public class LoginServiceImplTest {
    * 
    */
   @Test(expected = UsuarioNoExisteException.class)
-  public void usuarioNoExisteException() {
+  public void debeLanzarUsuarioNoExisteExceptionSiNoExisteUsuarioEnRepository() {
     // given
     Mockito.when(userRepository.find("dan")).thenReturn(null);
     // when
