@@ -1,5 +1,10 @@
 package ar.gov.mecon.constants;
 
+/**
+ * Clase estatica con constntes.
+ * 
+ * @author dhorri
+ */
 public class Moneda {
 
   public static final String PESOS = "PESOS";
