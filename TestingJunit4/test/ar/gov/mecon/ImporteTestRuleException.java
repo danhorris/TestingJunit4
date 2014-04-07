@@ -15,7 +15,7 @@ import ar.gov.mecon.constants.Moneda;
  * 
  * @author dhorri
  */
-public class ImporteTestRule {
+public class ImporteTestRuleException {
 
   @Rule
   public ExpectedException exception = ExpectedException.none();
